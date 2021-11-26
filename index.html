@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>calcul</title>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly="">
+        <button class="clear"onclick="calculate('c')">c</button>
+        <button onclick="calculate('bs')">&larr;</button>
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('7')">7</button>
+        <button onclick="calculate('8')">8</button>
+        <button onclick="calculate('9')">9</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('4')">4</button>
+        <button onclick="calculate('5')">5</button>
+        <button onclick="calculate('6')">6</button>
+        <button onclick="calculate('x')">x</button>
+        <button onclick="calculate('1')">1</button>
+        <button onclick="calculate('2')">2</button>
+        <button onclick="calculate('3')">3</button>
+        <button class="equal" onclick="calculate('=')">=</button>
+        <button onclick="calculate('point')">.</button>
+        <button onclick="calculate('0')">0</button>
+        <button onclick="calculate('/')">/</button>
+    </div>
+    <script type="text/javascript">
+        var display = document.getElementById("display");
+        var memory = 0;
+        var operator;
+        function calculate(e) {
+            if(e<10){
+                display.value += e;
+            }
+            switch(e){
+                case "c": display.value = "";
+                break;
+                case"bs":
+                if(display.value<10){
+                    display.value = "";
+                } else {
+                   display.value = 
+                   Math.floor(display.value/10); 
+                }
+                break;
+                case"point": display.value += ".";
+                break;
+                case "+": memory = display.value;
+                    display.value = "";
+                    operator = "+";
+                    break;
+                case "-": memory = display.value;
+                    display.value = "";
+                    operator = "-";
+                    break;
+                case "x": memory = display.value;
+                    display.value = "";
+                    operator = "x";
+                    break;
+                case "/": memory = display.value;
+                    display.value = "";
+                    operator = "/";
+                    break;
+                case"=":
+                     if(operator == "+")
+                     display.value =
+                     parseFloat(memory)+parseFloat(display.value);
+                     else if(operator == "-")
+                     display.value = memory-display.value;
+                     else if(operator == "x")
+                     display.value = memory*display.value;
+                     else if(operator == "/")
+                     display.value = memory/display.value;
+                     break;
+
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
